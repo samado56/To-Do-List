@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&" />
+</head>
+<body>
+    
+</body>
+    <script>
+        document.write("<div class='container'>");
+        document.write("<div id='frame' class='frame'>")
+        document.write("<div class=note-head>");
+        document.write("<h3>To Do List</h3> <i onclick='addNote()' class='material-icons'>add</i>");
+        document.write("</div>")
+        
+        document.write("<div id='note-body' class='note-body'>")
+            // document.write("<div  id='box' class='box'>")
+            // document.write("<div class='title'><h2>Hello</h2></div>")
+            // document.write("<div class='btns'> <span class='material-symbols-outlined'>delete</span> <span class='material-symbols-outlined'>edit</span>")
+            // document.write("</div>")
+        document.write("</div>")
+        
+        
+         var title;
+         var content=[]
+  
+        function addNote(){
+            title = prompt("Give it a Title:", "text")
+            var elem1 = `<div id="box${content.length}" class='box'>
+                                <div class='title'>
+                                    <h2 id='tit${content.length}'>${title}</h2>
+                                </div>
+                                <div class='btns'> 
+                                    
+                                    <span class='material-symbols-outlined' onclick='taskCheck()' id='taskCheck'>radio_button_unchecked</span>
+                                    <span class='material-symbols-outlined' onclick='deleteNote()'>delete</span>
+                                    <span class='material-symbols-outlined' onclick='editNotes(${content.length})'>Edit</span>
+                            </div>
+                         `
+                content.push(elem1)
+
+            document.getElementById("note-body").innerHTML+=elem1
+        }
+
+        function deleteNote(){
+            var td = event.target.parentNode; 
+            var tr = td.parentNode;
+            tr.parentNode.removeChild(tr);
+        }
+
+        function editNotes(x){
+            var retrive =document.getElementById('tit'+x).innerHTML
+            var ntitle =prompt("update the title", retrive)
+            document.getElementById("tit"+x).innerHTML=ntitle
+        }
+
+        // document.getElementById("taskCheck").addEventListener("click", function(){
+        //     console.log("clicked")
+        // })
+        
+        function taskCheck(x){
+            console.log("clicked")
+            document.getElementById('taskCheck'+x).innerHTML=`<span class='material-symbols-outlined'>check_circle</span>`
+        }
+
+        // function backcheck(){
+        //     document.getElementById('taskCheck').innerHTML=`<span class='material-symbols-outlined' onclick='backcheck()'>radio_button_unchecked</span>`
+
+        // }
+
+    </script>
+</html>
