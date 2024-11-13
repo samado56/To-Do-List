@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     background-color: cadetblue;
-    
+    height: 100vh;
     
 }
 
@@ -27,7 +27,7 @@
     background-color: rgb(233, 243, 247);
     
     width: 500px;
-    height: 550px;
+    height: 600px;
     text-align: center;
     border-radius: 10px 10px 0 0;
     margin-top: 5px;
@@ -68,9 +68,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: tomato;
-    color: white;
-    
+    background-color: rgb(255, 99, 71);
+    color: white; 
+    transition: transform .2s;
+}
+
+
+
+
+
+.box:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(255, 130, 107) ;
+    transform: scale(1.1)
 }
 
 .title{
@@ -86,3 +96,4 @@
     color: white;
 
 }
+

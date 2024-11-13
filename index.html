@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&" />
 </head>
-<body>
-    
+<body> 
 </body>
     <script>
         document.write("<div class='container'>");
@@ -28,7 +27,7 @@
          var title;
          var content=[]
   
-        function addNote(){
+        function addNote (){
             title = prompt("Give it a Title:", "text")
             var elem1 = `<div id="box${content.length}" class='box'>
                                 <div class='title'>
@@ -36,8 +35,8 @@
                                 </div>
                                 <div class='btns'> 
                                     
-                                    <span class='material-symbols-outlined' onclick='taskCheck()' id='taskCheck'>radio_button_unchecked</span>
-                                    <span class='material-symbols-outlined' onclick='deleteNote()'>delete</span>
+                                    <span class='material-symbols-outlined' onclick='taskCheck(this, ${content.length})'  id='taskCheck${content.length}'>radio_button_unchecked</span>
+                                    <span class='material-symbols-outlined' onclick='deleteNote(${content.length})'>delete</span>
                                     <span class='material-symbols-outlined' onclick='editNotes(${content.length})'>Edit</span>
                             </div>
                          `
@@ -46,7 +45,7 @@
             document.getElementById("note-body").innerHTML+=elem1
         }
 
-        function deleteNote(){
+        function deleteNote(y){    
             var td = event.target.parentNode; 
             var tr = td.parentNode;
             tr.parentNode.removeChild(tr);
@@ -56,21 +55,25 @@
             var retrive =document.getElementById('tit'+x).innerHTML
             var ntitle =prompt("update the title", retrive)
             document.getElementById("tit"+x).innerHTML=ntitle
+            return ntitle
         }
 
-        // document.getElementById("taskCheck").addEventListener("click", function(){
-        //     console.log("clicked")
-        // })
         
-        function taskCheck(x){
-            console.log("clicked")
-            document.getElementById('taskCheck'+x).innerHTML=`<span class='material-symbols-outlined'>check_circle</span>`
+        function taskCheck(obj, x){
+            
+            if (obj.innerHTML == 'radio_button_unchecked'){
+                obj.innerHTML = "check_circle"
+                document.getElementById('box'+x).style.backgroundColor="green"
+                return
+            }
+            if (obj.innerHTML == 'check_circle'){
+                const firstValue = document.getElementById('tit'+x).innerHTML
+                obj.innerHTML = "radio_button_unchecked"
+                obj.style.color = "white"
+                document.getElementById('box'+x).style.backgroundColor="tomato"
+                return
+            }            
         }
-
-        // function backcheck(){
-        //     document.getElementById('taskCheck').innerHTML=`<span class='material-symbols-outlined' onclick='backcheck()'>radio_button_unchecked</span>`
-
-        // }
-
+        
     </script>
 </html>
