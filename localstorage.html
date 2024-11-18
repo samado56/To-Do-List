@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center; display: flex; justify-content: center;">
+        <h1 id="item" onclick="test(this)">adam</h1>
+    </div>
+</body>
+
+<script>
+    // set item 
+    // localStorage.setItem("firstName", "adam")
+
+    //retrieve
+    // document.getElementById("item").innerHTML="adam"
+
+    function test(obj){
+        if(obj.innerHTML =="adam"){
+            console.log("tracked")
+            // document.getElementById('item').innerHTML="change adam to ilyas"
+            obj.innerHTML="change adam to ilyas"
+            return
+        }
+        // console.log("tracked")
+        //     document.getElementById('item').innerHTML="change adam to ilyas"
+
+    }
+
+    test()
+</script>
+</html>

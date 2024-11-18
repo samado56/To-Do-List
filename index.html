@@ -24,56 +24,122 @@
         document.write("</div>")
         
         
-         var title;
-         var content=[]
-  
+        var title;
+        var content=[]
+        var elem;
+
+        var data = localStorage.getItem('notes')
+        document.getElementById('note-body').innerHTML=JSON.parse(data)
+        
+
         function addNote (){
-            title = prompt("Give it a Title:", "text")
-            var elem1 = `<div id="box${content.length}" class='box'>
+
+            title = prompt("Give it a Title:", "Your List")
+             elem = `<div id="box"  class='box' >
                                 <div class='title'>
-                                    <h2 id='tit${content.length}'>${title}</h2>
+                                    <h2>${title}</h2>
+                                    <h2 style='display:none;'>Done</h2>
                                 </div>
                                 <div class='btns'> 
                                     
-                                    <span class='material-symbols-outlined' onclick='taskCheck(this, ${content.length})'  id='taskCheck${content.length}'>radio_button_unchecked</span>
-                                    <span class='material-symbols-outlined' onclick='deleteNote(${content.length})'>delete</span>
-                                    <span class='material-symbols-outlined' onclick='editNotes(${content.length})'>Edit</span>
+                                    <span class='material-symbols-outlined' onclick='taskCheck(this)'>radio_button_unchecked</span>
+                                    <span class='material-symbols-outlined' onclick='deleteNote(this)'>delete</span>
+                                    <span class='material-symbols-outlined' onclick='editNotes(this)'>Edit</span>
                             </div>
                          `
-                content.push(elem1)
 
-            document.getElementById("note-body").innerHTML+=elem1
-        }
+            content.push(elem)
+            document.getElementById("note-body").innerHTML+=elem   
+            
+            settingLocalstorage()
 
-        function deleteNote(y){    
-            var td = event.target.parentNode; 
-            var tr = td.parentNode;
-            tr.parentNode.removeChild(tr);
-        }
-
-        function editNotes(x){
-            var retrive =document.getElementById('tit'+x).innerHTML
-            var ntitle =prompt("update the title", retrive)
-            document.getElementById("tit"+x).innerHTML=ntitle
-            return ntitle
         }
 
         
-        function taskCheck(obj, x){
+
+        function settingLocalstorage(){
+                var dom = document.getElementById('box').parentNode.innerHTML
+                localStorage.setItem('notes',JSON.stringify(dom))
+        }
+
+         
+
+        
+        function deleteNote(){    
+
+            var td = event.target.parentNode; 
+            var tr = td.parentNode;
+            var dd = tr.childNodes[1].innerText
+            tr.parentNode.removeChild(tr)
+
+            settingLocalstorage()
+
+        }
+      
+
+
+        
+
+        function editNotes(obj){
+            var btns = obj.parentNode
+
+            var tit = btns.parentNode.childNodes[1]
+            var h2 = tit.childNodes[1].innerHTML
+
+            var newTitle = prompt("edit your list", h2) 
+
+            tit.childNodes[1].innerHTML=newTitle
+
+        }
+
+        
+        function taskCheck(obj){
+
+            var btns = obj.parentNode
+            var box = btns.parentNode
+
+            var noteTitle = box.childNodes[1]
+
             
-            if (obj.innerHTML == 'radio_button_unchecked'){
+            if (obj.innerHTML == 'radio_button_unchecked' ){
                 obj.innerHTML = "check_circle"
-                document.getElementById('box'+x).style.backgroundColor="green"
+
+                box.style.backgroundColor = "green"
+
+                noteTitle.childNodes[1].style.display = "none"
+                btns.childNodes[5].style.display = "none"
+                noteTitle.childNodes[3].style.display = ""
+
+                settingLocalstorage()
                 return
             }
-            if (obj.innerHTML == 'check_circle'){
-                const firstValue = document.getElementById('tit'+x).innerHTML
+            if(obj.innerHTML == 'check_circle'){
                 obj.innerHTML = "radio_button_unchecked"
-                obj.style.color = "white"
-                document.getElementById('box'+x).style.backgroundColor="tomato"
-                return
-            }            
+
+                box.style.backgroundColor = "tomato"
+
+                btns.childNodes[5].style.display = ""
+                noteTitle.childNodes[1].style.display = ''
+                noteTitle.childNodes[3].style.display = "none"
+
+                settingLocalstorage()
+                return   
+            }   
+            
         }
+
+
+
+
+
+    
+
+
+        
+
+
+
+        
         
     </script>
 </html>
