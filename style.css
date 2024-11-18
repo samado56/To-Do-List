@@ -24,18 +24,19 @@
 }
 
 .frame{
-    background-color: rgb(233, 243, 247);
-    
-    width: 500px;
+    background-color: rgb(203, 212, 216);
     height: 600px;
     text-align: center;
     border-radius: 10px 10px 0 0;
     margin-top: 5px;
-  
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    position: absolute;
+    
 }
 
 .note-head{
-    width:inherit;
+    width: 500px;;
     height: 30px;
     background-color: rgb(253, 236, 0);
     color: white;
@@ -43,9 +44,13 @@
     text-align: center;
     justify-content: space-between;
     align-items: center;
-    border-radius: inherit
-    
-    
+    border-radius: inherit;
+    position: sticky;
+    top: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+
+   
 }
 
 .note-head h3{
@@ -58,31 +63,40 @@
     margin-right: 5px;
     cursor: pointer;
     color: black;
+    transition: transform .2s;
+}
+
+.note-head i:hover{
+    transform: scale(1.2);
+    color: green;
 }
 
 .box{
     width: 485px;
     height: 50px;
-    /* border: 2px solid tomato; */
-    margin: 10px 5px;
+    margin: 0px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(255, 99, 71);
-    color: white; 
+    background-color: rgb(231, 231, 224);
+    color: 10375C; 
     transition: transform .2s;
-    border-radius: 10px;
+
 }
+
+
 
 .box:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: rgb(255, 130, 107) ;
-    transform: scale(1.05);
+    background-color: rgb(193, 233, 213) ;
+    transform: scale(1.01);
     border-radius: 0px;
+    position: relative;
+    z-index: 1000;
 }
 
 .title{
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .btns{
@@ -90,8 +104,17 @@
     margin-right: 10px;
     gap: 20px;
     cursor: pointer;
-    /* color: tomato; */
     color: white;
 
 }
 
+.btns span{
+    color: #4A628A;
+    transition: transform .2s;
+
+}
+
+
+.btns span:hover{
+    transform: scale(1.3);
+}

@@ -30,14 +30,18 @@
 
         var data = localStorage.getItem('notes')
         document.getElementById('note-body').innerHTML=JSON.parse(data)
-        
+
 
         function addNote (){
 
+            var clr1 = Math.random()*255
+            var clr3 = Math.random()*255
+            var clr2 = Math.random()*255
+
             title = prompt("Give it a Title:", "Your List")
-             elem = `<div id="box"  class='box' >
+             elem = `<div id="box"  class='box'  style='border-bottom:2px solid rgb(${clr1}, ${clr2}, ${clr3});'>
                                 <div class='title'>
-                                    <h2>${title}</h2>
+                                    <h2 style='color: rgb(${clr1}, ${clr2}, ${clr3})'>${title}</h2>
                                     <h2 style='display:none;'>Done</h2>
                                 </div>
                                 <div class='btns'> 
@@ -49,8 +53,8 @@
                          `
 
             content.push(elem)
-            document.getElementById("note-body").innerHTML+=elem   
-            
+            document.getElementById("note-body").innerHTML+=elem  
+
             settingLocalstorage()
 
         }
@@ -61,8 +65,6 @@
                 var dom = document.getElementById('box').parentNode.innerHTML
                 localStorage.setItem('notes',JSON.stringify(dom))
         }
-
-         
 
         
         function deleteNote(){    
@@ -75,9 +77,6 @@
             settingLocalstorage()
 
         }
-      
-
-
         
 
         function editNotes(obj){
@@ -89,6 +88,9 @@
             var newTitle = prompt("edit your list", h2) 
 
             tit.childNodes[1].innerHTML=newTitle
+
+            settingLocalstorage()
+
 
         }
 
@@ -104,11 +106,12 @@
             if (obj.innerHTML == 'radio_button_unchecked' ){
                 obj.innerHTML = "check_circle"
 
-                box.style.backgroundColor = "green"
+                box.style.backgroundColor = "rgb(193, 233, 213)"
 
                 noteTitle.childNodes[1].style.display = "none"
                 btns.childNodes[5].style.display = "none"
                 noteTitle.childNodes[3].style.display = ""
+                noteTitle.childNodes[3].style.color = "#4A628A"
 
                 settingLocalstorage()
                 return
@@ -116,7 +119,7 @@
             if(obj.innerHTML == 'check_circle'){
                 obj.innerHTML = "radio_button_unchecked"
 
-                box.style.backgroundColor = "tomato"
+                box.style.backgroundColor = "rgb(231, 231, 224)"
 
                 btns.childNodes[5].style.display = ""
                 noteTitle.childNodes[1].style.display = ''
@@ -127,19 +130,7 @@
             }   
             
         }
-
-
-
-
-
-    
-
-
-        
-
-
-
-        
+      
         
     </script>
 </html>
